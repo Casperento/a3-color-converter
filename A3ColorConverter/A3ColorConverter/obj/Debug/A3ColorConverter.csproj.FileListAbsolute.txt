@@ -1,0 +1,10 @@
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\bin\Debug\A3ColorConverter.exe.config
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\bin\Debug\A3ColorConverter.exe
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\bin\Debug\A3ColorConverter.pdb
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\obj\Debug\A3ColorConverter.csprojAssemblyReference.cache
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\obj\Debug\A3ColorConverter.MainForm.resources
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\obj\Debug\A3ColorConverter.Properties.Resources.resources
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\obj\Debug\A3ColorConverter.csproj.GenerateResource.cache
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\obj\Debug\A3ColorConverter.csproj.CoreCompileInputs.cache
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\obj\Debug\A3ColorConverter.exe
+C:\Users\RAFAEL\Documents\ArmedAssaultProjects\A3ColorConverter\A3ColorConverter\A3ColorConverter\obj\Debug\A3ColorConverter.pdb
