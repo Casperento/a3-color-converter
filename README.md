@@ -1,2 +1,2 @@
-# a3-color-converter
-A simple color converter for Arma 3 RGB and ARBG format
+# Arma 3 Color Converter
+A simple color converter for Arma 3 RGB/ARBG format
