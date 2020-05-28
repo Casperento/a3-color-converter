@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,28 +21,17 @@ namespace A3ColorConverter
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            if (txtBoxHexTit.Text == "") {
-                MessageBox.Show("You need to type something to convert...");
-            } else if (!txtBoxHexTit.Text.Contains('#') || txtBoxHexTit.Text.Length < 7)
+            string hexValue = txtBoxHexTit.Text;
+            if (Regex.IsMatch(hexValue, @"^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"))
             {
-                MessageBox.Show("Invalid Color...");
-            } else {
-                String hexValue = txtBoxHexTit.Text;
-                decimal alpha, red, green, blue;
+                int iR = (hexValue.Length < 8) ? 1 : 3;
+                int iG = (hexValue.Length < 8) ? 3 : 5;
+                int iB = (hexValue.Length < 8) ? 5 : 7;
 
-                if (hexValue.Length < 8)
-                {
-                    alpha = 255;
-                    red = int.Parse(hexValue.Substring(1, 2), System.Globalization.NumberStyles.HexNumber);
-                    green = int.Parse(hexValue.Substring(3, 2), System.Globalization.NumberStyles.HexNumber);
-                    blue = int.Parse(hexValue.Substring(5, 2), System.Globalization.NumberStyles.HexNumber);
-                } else
-                {
-                    alpha = int.Parse(hexValue.Substring(1, 2), System.Globalization.NumberStyles.HexNumber);
-                    red = int.Parse(hexValue.Substring(3, 2), System.Globalization.NumberStyles.HexNumber);
-                    green = int.Parse(hexValue.Substring(5, 2), System.Globalization.NumberStyles.HexNumber);
-                    blue = int.Parse(hexValue.Substring(7, 2), System.Globalization.NumberStyles.HexNumber);
-                }
+                decimal alpha = (hexValue.Length < 8) ? 255 : int.Parse(hexValue.Substring(1, 2), System.Globalization.NumberStyles.HexNumber);
+                decimal red = int.Parse(hexValue.Substring(iR, 2), System.Globalization.NumberStyles.HexNumber);
+                decimal green = int.Parse(hexValue.Substring(iG, 2), System.Globalization.NumberStyles.HexNumber);
+                decimal blue = int.Parse(hexValue.Substring(iB, 2), System.Globalization.NumberStyles.HexNumber);
 
                 decimal a = Math.Round((alpha / 255) * 1000) / 1000;
                 decimal r = Math.Round((red / 255) * 1000) / 1000;
@@ -57,6 +48,45 @@ namespace A3ColorConverter
 
                 lblTit.ForeColor = ColorTranslator.FromHtml(hexValue);
             }
+            else
+            {
+                MessageBox.Show("Invalid Color...");
+            }
+        }
+
+        private void btnHtoA2_Click(object sender, EventArgs e)
+        {
+            string hexValue = txtBoxHexBg.Text;
+            if (Regex.IsMatch(hexValue, @"^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"))
+            {
+                int iR = (hexValue.Length < 8) ? 1 : 3;
+                int iG = (hexValue.Length < 8) ? 3 : 5;
+                int iB = (hexValue.Length < 8) ? 5 : 7;
+
+                decimal alpha = (hexValue.Length < 8) ? 255 : int.Parse(hexValue.Substring(1, 2), System.Globalization.NumberStyles.HexNumber);
+                decimal red = int.Parse(hexValue.Substring(iR, 2), System.Globalization.NumberStyles.HexNumber);
+                decimal green = int.Parse(hexValue.Substring(iG, 2), System.Globalization.NumberStyles.HexNumber);
+                decimal blue = int.Parse(hexValue.Substring(iB, 2), System.Globalization.NumberStyles.HexNumber);
+
+                decimal a = Math.Round((alpha / 255) * 1000) / 1000;
+                decimal r = Math.Round((red / 255) * 1000) / 1000;
+                decimal g = Math.Round((green / 255) * 1000) / 1000;
+                decimal b = Math.Round((blue / 255) * 1000) / 1000;
+
+                txtBoxAcolorBg.Text = "{" + String.Format("{0}, {1}, {2}, {3}",
+                    r.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
+                    g.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
+                    b.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
+                    a.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture)
+                ) + "}";
+
+
+                colorPanel.BackColor = ColorTranslator.FromHtml(hexValue);
+            }
+            else
+            {
+                MessageBox.Show("Invalid Color...");
+            }
         }
 
         private void btnPicker_Click(object sender, EventArgs e)
@@ -65,6 +95,9 @@ namespace A3ColorConverter
             colorDialog.AnyColor = false;
             colorDialog.FullOpen = true;
             colorDialog.AllowFullOpen = true;
+            if (txtBoxAcolorTit.Text != "") {
+                colorDialog.Color = lblTit.ForeColor;
+            }
 
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
@@ -93,6 +126,10 @@ namespace A3ColorConverter
             colorDialog.AnyColor = false;
             colorDialog.FullOpen = true;
             colorDialog.AllowFullOpen = true;
+            if (txtBoxAcolorBg.Text != "")
+            {
+                colorDialog.Color = colorPanel.BackColor;
+            }
 
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
@@ -115,61 +152,69 @@ namespace A3ColorConverter
             }
         }
 
-        private void btnHtoA2_Click(object sender, EventArgs e)
-        {
-            if (txtBoxHexBg.Text == "")
-            {
-                MessageBox.Show("You need to type something to convert...");
-            }
-            else if (!txtBoxHexBg.Text.Contains('#') || txtBoxHexBg.Text.Length < 7)
-            {
-                MessageBox.Show("Invalid Color...");
-            }
-            else
-            {
-                String hexValue = txtBoxHexBg.Text;
-                decimal alpha, red, green, blue;
-
-                if (hexValue.Length < 8)
-                {
-                    alpha = 255;
-                    red = int.Parse(hexValue.Substring(1, 2), System.Globalization.NumberStyles.HexNumber);
-                    green = int.Parse(hexValue.Substring(3, 2), System.Globalization.NumberStyles.HexNumber);
-                    blue = int.Parse(hexValue.Substring(5, 2), System.Globalization.NumberStyles.HexNumber);
-                }
-                else
-                {
-                    alpha = int.Parse(hexValue.Substring(1, 2), System.Globalization.NumberStyles.HexNumber);
-                    red = int.Parse(hexValue.Substring(3, 2), System.Globalization.NumberStyles.HexNumber);
-                    green = int.Parse(hexValue.Substring(5, 2), System.Globalization.NumberStyles.HexNumber);
-                    blue = int.Parse(hexValue.Substring(7, 2), System.Globalization.NumberStyles.HexNumber);
-                }
-
-                decimal a = Math.Round((alpha / 255) * 1000) / 1000;
-                decimal r = Math.Round((red / 255) * 1000) / 1000;
-                decimal g = Math.Round((green / 255) * 1000) / 1000;
-                decimal b = Math.Round((blue / 255) * 1000) / 1000;
-
-                txtBoxAcolorBg.Text = "{" + String.Format("{0}, {1}, {2}, {3}",
-                    r.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    g.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    b.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    a.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture)
-                ) + "}";
-
-
-                colorPanel.BackColor = ColorTranslator.FromHtml(hexValue);
-            }
-        }
-
         private void btnAtoH1_Click(object sender, EventArgs e)
         {
-            // TODO
+            string armaColor = txtBoxAcolorTit.Text;
+            armaColor = Regex.Replace(armaColor, @"^.*?\{(.*?)\}.*?$", "$1");
+            string[] arr = armaColor.Split(',');
+
+            int r = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[0], CultureInfo.InvariantCulture))));
+            int g = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[1], CultureInfo.InvariantCulture))));
+            int b = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[2], CultureInfo.InvariantCulture))));
+            int a = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[3], CultureInfo.InvariantCulture))));
+
+            string hexValue = String.Format((a == 255) ? $"#{r:X}{g:X}{b:X}" : $"#{a:X}{r:X}{g:X}{b:X}");
+            txtBoxHexTit.Text = hexValue;
+            lblTit.ForeColor = ColorTranslator.FromHtml(hexValue);
         }
 
         private void btnAtoH2_Click(object sender, EventArgs e)
         {
-            // TODO
+            string armaColor = txtBoxAcolorBg.Text;
+            armaColor = Regex.Replace(armaColor, @"^.*?\{(.*?)\}.*?$", "$1");
+            string[] arr = armaColor.Split(',');
+
+            int r = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[0], CultureInfo.InvariantCulture))));
+            int g = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[1], CultureInfo.InvariantCulture))));
+            int b = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[2], CultureInfo.InvariantCulture))));
+            int a = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[3], CultureInfo.InvariantCulture))));
+
+            string hexValue = String.Format((a == 255) ? $"#{r:X}{g:X}{b:X}" : $"#{a:X}{r:X}{g:X}{b:X}");
+            txtBoxHexBg.Text = hexValue;
+            colorPanel.BackColor = ColorTranslator.FromHtml(hexValue);
+        }
+
+
+        private void txtBoxHexTit_KeyPress(object sender, KeyPressEventArgs e) {
+            if (Regex.IsMatch(e.KeyChar.ToString(), @"[^#0-9A-Fa-f\u0008\cC\cV\cA\cX]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBoxAcolorTit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Regex.IsMatch(e.KeyChar.ToString(), @"[^.,0-9\{\}\u0008\cC\cV\cA\cX]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        private void txtBoxHexBg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Regex.IsMatch(e.KeyChar.ToString(), @"[^#0-9A-Fa-f\u0008\cC\cV\cA\cX]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBoxAcolorBg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Regex.IsMatch(e.KeyChar.ToString(), @"[^.,0-9\{\}\u0008\cC\cV\cA\cX]"))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

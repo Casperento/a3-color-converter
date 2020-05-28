@@ -1,4 +1,6 @@
-﻿namespace A3ColorConverter
+﻿using System.Windows.Forms;
+
+namespace A3ColorConverter
 {
     partial class MainForm
     {
@@ -69,6 +71,7 @@
             this.txtBoxHexTit.Size = new System.Drawing.Size(196, 26);
             this.txtBoxHexTit.TabIndex = 2;
             this.txtBoxHexTit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxHexTit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxHexTit_KeyPress);
             // 
             // txtBoxAcolorTit
             // 
@@ -77,6 +80,7 @@
             this.txtBoxAcolorTit.Size = new System.Drawing.Size(196, 26);
             this.txtBoxAcolorTit.TabIndex = 3;
             this.txtBoxAcolorTit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxAcolorTit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxAcolorTit_KeyPress);
             // 
             // lblTypeHex
             // 
@@ -123,7 +127,6 @@
             // 
             // btnAtoH1
             // 
-            this.btnAtoH1.Enabled = false;
             this.btnAtoH1.Location = new System.Drawing.Point(115, 151);
             this.btnAtoH1.Name = "btnAtoH1";
             this.btnAtoH1.Size = new System.Drawing.Size(31, 50);
@@ -178,6 +181,7 @@
             this.txtBoxAcolorBg.Size = new System.Drawing.Size(196, 26);
             this.txtBoxAcolorBg.TabIndex = 12;
             this.txtBoxAcolorBg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxAcolorBg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxAcolorBg_KeyPress);
             // 
             // label3
             // 
@@ -199,10 +203,10 @@
             this.txtBoxHexBg.Size = new System.Drawing.Size(196, 26);
             this.txtBoxHexBg.TabIndex = 15;
             this.txtBoxHexBg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxHexBg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxHexBg_KeyPress);
             // 
             // btnAtoH2
             // 
-            this.btnAtoH2.Enabled = false;
             this.btnAtoH2.Location = new System.Drawing.Point(420, 151);
             this.btnAtoH2.Name = "btnAtoH2";
             this.btnAtoH2.Size = new System.Drawing.Size(31, 49);
@@ -246,7 +250,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ASCC v1.0.0 by Casperento";
+            this.Text = "A3CC v1.0.0 by Casperento";
             this.colorPanel.ResumeLayout(false);
             this.colorPanel.PerformLayout();
             this.ResumeLayout(false);
