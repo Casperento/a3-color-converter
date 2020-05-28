@@ -1,6 +1,9 @@
 # Arma 3 Color Converter
 A simple color converter from HEX to Arma 3 RGB/ARBG format
 
-# Dependencies (TODO)
+# Dependencies
+.NET Framework 4.7.2
 
-# Screenshots (TODO)
+# Screenshots
+![Screen1](https://prnt.sc/sppsga)
+![Screen2](https://prnt.sc/spptdp)
