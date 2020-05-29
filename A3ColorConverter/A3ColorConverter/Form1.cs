@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace A3ColorConverter
@@ -28,10 +23,10 @@ namespace A3ColorConverter
                 int iG = (hexValue.Length < 8) ? 3 : 5;
                 int iB = (hexValue.Length < 8) ? 5 : 7;
 
-                decimal alpha = (hexValue.Length < 8) ? 255 : int.Parse(hexValue.Substring(1, 2), System.Globalization.NumberStyles.HexNumber);
-                decimal red = int.Parse(hexValue.Substring(iR, 2), System.Globalization.NumberStyles.HexNumber);
-                decimal green = int.Parse(hexValue.Substring(iG, 2), System.Globalization.NumberStyles.HexNumber);
-                decimal blue = int.Parse(hexValue.Substring(iB, 2), System.Globalization.NumberStyles.HexNumber);
+                decimal alpha = (hexValue.Length < 8) ? 255 : int.Parse(hexValue.Substring(1, 2), NumberStyles.HexNumber);
+                decimal red = int.Parse(hexValue.Substring(iR, 2), NumberStyles.HexNumber);
+                decimal green = int.Parse(hexValue.Substring(iG, 2), NumberStyles.HexNumber);
+                decimal blue = int.Parse(hexValue.Substring(iB, 2), NumberStyles.HexNumber);
 
                 decimal a = Math.Round((alpha / 255) * 1000) / 1000;
                 decimal r = Math.Round((red / 255) * 1000) / 1000;
@@ -39,10 +34,10 @@ namespace A3ColorConverter
                 decimal b = Math.Round((blue / 255) * 1000) / 1000;
 
                 txtBoxAcolorTit.Text = "{" + String.Format("{0}, {1}, {2}, {3}",
-                    r.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    g.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    b.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    a.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture)
+                    r.ToString("0.000", CultureInfo.InvariantCulture),
+                    g.ToString("0.000", CultureInfo.InvariantCulture),
+                    b.ToString("0.000", CultureInfo.InvariantCulture),
+                    a.ToString("0.000", CultureInfo.InvariantCulture)
                 ) + "}";
 
 
@@ -63,10 +58,10 @@ namespace A3ColorConverter
                 int iG = (hexValue.Length < 8) ? 3 : 5;
                 int iB = (hexValue.Length < 8) ? 5 : 7;
 
-                decimal alpha = (hexValue.Length < 8) ? 255 : int.Parse(hexValue.Substring(1, 2), System.Globalization.NumberStyles.HexNumber);
-                decimal red = int.Parse(hexValue.Substring(iR, 2), System.Globalization.NumberStyles.HexNumber);
-                decimal green = int.Parse(hexValue.Substring(iG, 2), System.Globalization.NumberStyles.HexNumber);
-                decimal blue = int.Parse(hexValue.Substring(iB, 2), System.Globalization.NumberStyles.HexNumber);
+                decimal alpha = (hexValue.Length < 8) ? 255 : int.Parse(hexValue.Substring(1, 2), NumberStyles.HexNumber);
+                decimal red = int.Parse(hexValue.Substring(iR, 2), NumberStyles.HexNumber);
+                decimal green = int.Parse(hexValue.Substring(iG, 2), NumberStyles.HexNumber);
+                decimal blue = int.Parse(hexValue.Substring(iB, 2), NumberStyles.HexNumber);
 
                 decimal a = Math.Round((alpha / 255) * 1000) / 1000;
                 decimal r = Math.Round((red / 255) * 1000) / 1000;
@@ -74,10 +69,10 @@ namespace A3ColorConverter
                 decimal b = Math.Round((blue / 255) * 1000) / 1000;
 
                 txtBoxAcolorBg.Text = "{" + String.Format("{0}, {1}, {2}, {3}",
-                    r.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    g.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    b.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    a.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture)
+                    r.ToString("0.000", CultureInfo.InvariantCulture),
+                    g.ToString("0.000", CultureInfo.InvariantCulture),
+                    b.ToString("0.000", CultureInfo.InvariantCulture),
+                    a.ToString("0.000", CultureInfo.InvariantCulture)
                 ) + "}";
 
 
@@ -111,10 +106,10 @@ namespace A3ColorConverter
                 decimal b = Math.Round(( (decimal)argbArr[3] / 255) * 1000) / 1000;
 
                 txtBoxAcolorTit.Text = "{" + String.Format("{0}, {1}, {2}, {3}",
-                    r.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    g.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    b.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    a.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture)
+                    r.ToString("0.000", CultureInfo.InvariantCulture),
+                    g.ToString("0.000", CultureInfo.InvariantCulture),
+                    b.ToString("0.000", CultureInfo.InvariantCulture),
+                    a.ToString("0.000", CultureInfo.InvariantCulture)
                 ) + "}";
 
             }
@@ -143,10 +138,10 @@ namespace A3ColorConverter
                 decimal b = Math.Round(((decimal)argbArr[3] / 255) * 1000) / 1000;
 
                 txtBoxAcolorBg.Text = "{" + String.Format("{0}, {1}, {2}, {3}",
-                    r.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    g.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    b.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture),
-                    a.ToString("0.000", System.Globalization.CultureInfo.InvariantCulture)
+                    r.ToString("0.000", CultureInfo.InvariantCulture),
+                    g.ToString("0.000", CultureInfo.InvariantCulture),
+                    b.ToString("0.000", CultureInfo.InvariantCulture),
+                    a.ToString("0.000", CultureInfo.InvariantCulture)
                 ) + "}";
 
             }
@@ -155,7 +150,7 @@ namespace A3ColorConverter
         private void btnAtoH1_Click(object sender, EventArgs e)
         {
             string armaColor = txtBoxAcolorTit.Text;
-            if (Regex.IsMatch(armaColor, @"^\{((([0]|[0]\.\d*)|([1]|[1]\.[0]*))\,){3}(([0]|[0]\.\d*)|([1]|[1]\.[0]*))\}$"))
+            if (Regex.IsMatch(armaColor, @"^.*?\{(.*?)\}.*?$"))
             {
                 armaColor = Regex.Replace(armaColor, @"^.*?\{(.*?)\}.*?$", "$1");
                 string[] arr = armaColor.Split(',');
@@ -182,7 +177,7 @@ namespace A3ColorConverter
         private void btnAtoH2_Click(object sender, EventArgs e)
         {
             string armaColor = txtBoxAcolorBg.Text;
-            if (Regex.IsMatch(armaColor, @"^\{((([0]|[0]\.\d*)|([1]|[1]\.[0]*))\,){3}(([0]|[0]\.\d*)|([1]|[1]\.[0]*))\}$"))
+            if (Regex.IsMatch(armaColor, @"^.*?\{(.*?)\}.*?$"))
             {
                 armaColor = Regex.Replace(armaColor, @"^.*?\{(.*?)\}.*?$", "$1");
                 string[] arr = armaColor.Split(',');
