@@ -155,43 +155,56 @@ namespace A3ColorConverter
         private void btnAtoH1_Click(object sender, EventArgs e)
         {
             string armaColor = txtBoxAcolorTit.Text;
-            armaColor = Regex.Replace(armaColor, @"^.*?\{(.*?)\}.*?$", "$1");
-            string[] arr = armaColor.Split(',');
+            if (Regex.IsMatch(armaColor, @"^\{((([0]|[0]\.\d*)|([1]|[1]\.[0]*))\,){3}(([0]|[0]\.\d*)|([1]|[1]\.[0]*))\}$"))
+            {
+                armaColor = Regex.Replace(armaColor, @"^.*?\{(.*?)\}.*?$", "$1");
+                string[] arr = armaColor.Split(',');
 
-            int r = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[0], CultureInfo.InvariantCulture))));
-            int g = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[1], CultureInfo.InvariantCulture))));
-            int b = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[2], CultureInfo.InvariantCulture))));
-            int a = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[3], CultureInfo.InvariantCulture))));
+                int r = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[0], CultureInfo.InvariantCulture))));
+                int g = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[1], CultureInfo.InvariantCulture))));
+                int b = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[2], CultureInfo.InvariantCulture))));
+                int a = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[3], CultureInfo.InvariantCulture))));
 
-            string red = ($"{r:X}".Length < 2) ? $"0{r:X}" : $"{r:X}";
-            string green = ($"{g:X}".Length < 2) ? $"0{g:X}" : $"{g:X}";
-            string blue = ($"{b:X}".Length < 2) ? $"0{b:X}" : $"{b:X}";
-            string alpha = ($"{a:X}".Length < 2) ? $"0{a:X}" : $"{a:X}";
+                string red = ($"{r:X}".Length < 2) ? $"0{r:X}" : $"{r:X}";
+                string green = ($"{g:X}".Length < 2) ? $"0{g:X}" : $"{g:X}";
+                string blue = ($"{b:X}".Length < 2) ? $"0{b:X}" : $"{b:X}";
+                string alpha = ($"{a:X}".Length < 2) ? $"0{a:X}" : $"{a:X}";
 
-            string hexValue = String.Format((a == 255) ? $"#{red}{green}{blue}" : $"#{alpha}{red}{green}{blue}");
-            txtBoxHexTit.Text = hexValue;
-            lblTit.ForeColor = ColorTranslator.FromHtml(hexValue);
+                string hexValue = String.Format((a == 255) ? $"#{red}{green}{blue}" : $"#{alpha}{red}{green}{blue}");
+                txtBoxHexTit.Text = hexValue;
+                lblTit.ForeColor = ColorTranslator.FromHtml(hexValue);
+            }
+            else {
+                MessageBox.Show("Invalid color...");
+            }
         }
 
         private void btnAtoH2_Click(object sender, EventArgs e)
         {
             string armaColor = txtBoxAcolorBg.Text;
-            armaColor = Regex.Replace(armaColor, @"^.*?\{(.*?)\}.*?$", "$1");
-            string[] arr = armaColor.Split(',');
+            if (Regex.IsMatch(armaColor, @"^\{((([0]|[0]\.\d*)|([1]|[1]\.[0]*))\,){3}(([0]|[0]\.\d*)|([1]|[1]\.[0]*))\}$"))
+            {
+                armaColor = Regex.Replace(armaColor, @"^.*?\{(.*?)\}.*?$", "$1");
+                string[] arr = armaColor.Split(',');
 
-            int r = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[0], CultureInfo.InvariantCulture))));
-            int g = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[1], CultureInfo.InvariantCulture))));
-            int b = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[2], CultureInfo.InvariantCulture))));
-            int a = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[3], CultureInfo.InvariantCulture))));
+                int r = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[0], CultureInfo.InvariantCulture))));
+                int g = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[1], CultureInfo.InvariantCulture))));
+                int b = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[2], CultureInfo.InvariantCulture))));
+                int a = Convert.ToInt32(Math.Round(Decimal.Multiply(255m, Decimal.Parse(arr[3], CultureInfo.InvariantCulture))));
 
-            string red = ($"{r:X}".Length < 2) ? $"0{r:X}" : $"{r:X}";
-            string green = ($"{g:X}".Length < 2) ? $"0{g:X}" : $"{g:X}";
-            string blue = ($"{b:X}".Length < 2) ? $"0{b:X}" : $"{b:X}";
-            string alpha = ($"{a:X}".Length < 2) ? $"0{a:X}" : $"{a:X}";
+                string red = ($"{r:X}".Length < 2) ? $"0{r:X}" : $"{r:X}";
+                string green = ($"{g:X}".Length < 2) ? $"0{g:X}" : $"{g:X}";
+                string blue = ($"{b:X}".Length < 2) ? $"0{b:X}" : $"{b:X}";
+                string alpha = ($"{a:X}".Length < 2) ? $"0{a:X}" : $"{a:X}";
 
-            string hexValue = String.Format((a == 255) ? $"#{red}{green}{blue}" : $"#{alpha}{red}{green}{blue}");
-            txtBoxHexBg.Text = hexValue;
-            colorPanel.BackColor = ColorTranslator.FromHtml(hexValue);
+                string hexValue = String.Format((a == 255) ? $"#{red}{green}{blue}" : $"#{alpha}{red}{green}{blue}");
+                txtBoxHexBg.Text = hexValue;
+                colorPanel.BackColor = ColorTranslator.FromHtml(hexValue);
+            }
+            else
+            {
+                MessageBox.Show("Invalid color...");
+            }
         }
 
 
