@@ -250,7 +250,7 @@ namespace A3ColorConverter
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "A3CC v1.0.1 by Casperento";
+            this.Text = "A3CC v1.0.0 by Casperento";
             this.colorPanel.ResumeLayout(false);
             this.colorPanel.PerformLayout();
             this.ResumeLayout(false);
